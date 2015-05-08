@@ -1,10 +1,10 @@
 
+from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from django.contrib.auth import get_user_model
-from . import models
 
+from . import models
 
 User = get_user_model()
 
