@@ -22,7 +22,8 @@ class TestTask(APITestCase):
             "done": False,
         }
         response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED, response.content)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         data['id'] = 1
+        data['url'] = 'http://testserver{0}'.format(reverse('task-detail', kwargs={'pk': 1}))
         self.assertEqual(response.data, data)
         self.assertEqual(category.tasks.count(), 1)

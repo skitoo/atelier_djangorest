@@ -9,6 +9,15 @@ class Category(viewsets.ModelViewSet):
     queryset = models.Category.objects.all()
     serializer_class = serializers.Category
 
+    @detail_route()
+    def mine(self, request, *args, **kwargs):
+        print(args)
+        print(kwargs)
+        category = self.get_object()
+        category.my_tasks = category.tasks.filter(owner=request.user)
+        serializer = serializers.MyCategory(category, context={'request': request})
+        return Response(serializer.data)
+
 
 class Task(viewsets.ModelViewSet):
     queryset = models.Task.objects.all()

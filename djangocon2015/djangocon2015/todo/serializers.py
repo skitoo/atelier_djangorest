@@ -33,3 +33,15 @@ class Category(serializers.ModelSerializer):
     class Meta:
         model = models.Category
         fields = ('id', 'name', 'tasks')
+
+
+class MyCategory(serializers.ModelSerializer):
+    tasks = Task(many=True, source='my_tasks')
+
+    class Meta:
+        model = models.Category
+        fields = ('id', 'name', 'tasks')
+
+
+# class MyCategory(Category):
+#     tasks = Task(many=True, source='my_tasks')
