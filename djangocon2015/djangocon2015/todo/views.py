@@ -1,8 +1,9 @@
 
-from rest_framework import viewsets
+from rest_framework import filters, viewsets
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 
+from . import filters as todo_filters
 from . import models, serializers
 
 
@@ -23,6 +24,8 @@ class Category(viewsets.ModelViewSet):
 class Task(viewsets.ModelViewSet):
     queryset = models.Task.objects.all()
     serializer_class = serializers.Task
+    filter_backends = (filters.DjangoFilterBackend, )
+    filter_class = todo_filters.Task
 
     @list_route()
     def mine(self, request):
