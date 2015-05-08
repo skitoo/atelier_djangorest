@@ -4,10 +4,10 @@ from . import serializers, models
 
 
 class Category(viewsets.ModelViewSet):
-    query = models.Category.objects.all()
-    serializer_class = serializers.Category()
+    queryset = models.Category.objects.all()
+    serializer_class = serializers.Category
 
 
 class Task(viewsets.ModelViewSet):
-    query = models.Task.objects.all()
-    serializer_class = serializers.Task()
+    queryset = models.Task.objects.all()
+    serializer_class = serializers.Task
